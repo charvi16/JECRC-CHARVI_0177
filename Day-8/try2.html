@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Using Variable</title>
+
+<style>
+
+body{
+font-family: Arial;
+padding:20px;
+background-color:aliceblue;
+}
+
+button{
+margin:5px;
+padding:8px 12px;
+}
+
+#output{
+margin-top:20px;
+padding:10px;
+background:white;
+min-height:150px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Capgemini Javascript Complete Practice</h1>
+
+<button onclick="variableDemo()">Variables</button>
+<button onclick="dataTypeDemo()">Data Types</button>
+<button onclick="typeConversionDemo()">Type Conversion</button>
+<button onclick="loopDemo()">Loops</button>
+<button onclick="loopProblems()">Loop Problems</button>
+<button onclick="functionDemo()">Functions</button>
+
+<div id="output"></div>
+
+<script>
+
+
+// Utility Functions
+
+function print(text)
+{
+document.getElementById("output").innerHTML += text + "<br>";
+}
+
+function clearOutput()
+{
+document.getElementById("output").innerHTML="";
+}
+
+
+
+// ======================
+// Variables Demo
+// ======================
+
+function variableDemo()
+{
+clearOutput();
+
+var name="Sourav";
+let city="Jaipur";
+const year=2024;
+
+print("Name : "+name);
+print("City : "+city);
+print("Year : "+year);
+
+// Block Scope Demo
+
+if(true)
+{
+var name="Rahul";
+let city="Delhi";
+
+print("Inside Block Name : "+name);
+print("Inside Block City : "+city);
+}
+
+print("Outside Block Name : "+name);
+print("Outside Block City : "+city);
+
+}
+
+
+
+// ======================
+// Data Types Demo
+// ======================
+
+function dataTypeDemo()
+{
+clearOutput();
+
+let name="Sourav";
+let age=22;
+let isStudent=true;
+let salary;
+let bonus=null;
+let bigNumber=123456789n;
+
+print(typeof name);
+print(typeof age);
+print(typeof isStudent);
+print(typeof salary);
+print(typeof bonus);
+print(typeof bigNumber);
+
+
+// Non Primitive
+
+let person={name:"Ram",age:25};
+let numbers=[1,2,3];
+let today=new Date();
+
+print(typeof person);
+print(typeof numbers);
+print(typeof today);
+
+}
+
+
+
+// ======================
+// Type Conversion Demo
+// ======================
+
+function typeConversionDemo()
+{
+clearOutput();
+
+let num="100";
+
+print("Original Type : "+typeof num);
+
+let converted=Number(num);
+
+print("After Conversion : "+typeof converted);
+
+let x=50;
+
+print("String Conversion : "+String(x));
+
+let bool=1;
+
+print("Boolean Conversion : "+Boolean(bool));
+
+}
+
+
+
+// ======================
+// Loop Demo
+// ======================
+
+function loopDemo()
+{
+clearOutput();
+
+print("FOR LOOP");
+
+for(let i=1;i<=5;i++)
+{
+print(i);
+}
+
+
+print("WHILE LOOP");
+
+let j=1;
+
+while(j<=3)
+{
+print(j);
+j++;
+}
+
+
+print("DO WHILE LOOP");
+
+let k=1;
+
+do
+{
+print(k);
+k++;
+
+}
+while(k<=3);
+
+}
+
+
+
+// ======================
+// Loop Problems
+// ======================
+
+function loopProblems()
+{
+clearOutput();
+
+
+// Factorial
+
+let num=5;
+let fact=1;
+
+for(let i=1;i<=num;i++)
+fact=fact*i;
+
+print("Factorial of 5 = "+fact);
+
+
+// Prime Number
+
+let n=7;
+let prime=true;
+
+for(let i=2;i<n;i++)
+{
+if(n%i==0)
+prime=false;
+}
+
+if(prime)
+print("7 is Prime");
+
+else
+print("7 is Not Prime");
+
+
+
+// Reverse String
+
+let str="Sourav";
+let reverse="";
+
+for(let i=str.length-1;i>=0;i--)
+reverse+=str[i];
+
+print("Reverse = "+reverse);
+
+}
+
+
+
+// ======================
+// Functions Demo
+// ======================
+
+function functionDemo()
+{
+clearOutput();
+
+
+// Function Declaration
+
+function greet(name)
+{
+return "Welcome "+name;
+}
+
+print(greet("Sourav"));
+
+
+
+// Function Expression
+
+let add=function(a,b)
+{
+return a+b;
+}
+
+print("Addition = "+add(5,3));
+
+
+
+// Default Parameter
+
+function discount(price,percent=10)
+{
+return price-(price*percent/100);
+}
+
+print("Discounted Price = "+discount(1000));
+
+
+
+// Reusable Function
+
+function square(n)
+{
+return n*n;
+}
+
+print("Square of 5 = "+square(5));
+
+}
+
+
+
+</script>
+
+</body>
+</html>
