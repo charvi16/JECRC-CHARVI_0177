@@ -1,0 +1,149 @@
+<!-- E-Commerce Add to Cart Button
+In an ontine shopping website, when a user clicks Add to Cart, the product should be added to the cart and a message displayed
+
+Requirements
+Use click event
+Display product name in console
+Show message in UI
+‹ button id="addCart*›Add to Cart‹/button›
+‹p 1d=msg**/p›
+<script»
+document getElementbyId(*addCart").addEventListen
+console log Product added to cart")
+document gettlementById(msg").innerHTML =
+"Item successfully added to cart;
+1ptx -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Task Allocation & Event Demo</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h3 {
+            margin-top: 0;
+            color: #007bff;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        #addCart {
+            background: #28a745;
+        }
+
+        #msg {
+            color: #28a745;
+            font-weight: bold;
+            margin-top: 10px;
+            min-height: 20px;
+        }
+
+        #log {
+            margin-top: 20px;
+            background: white;
+            border: 1px solid #ddd;
+            padding: 10px;
+            height: 200px;
+            overflow: auto;
+        }
+
+        .log-item {
+            padding: 3px 0;
+            border-bottom: 1px solid #eee;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>JavaScript Event Handling & Task Demo</h2>
+
+        <div class="section">
+            <h3>Task: E-Commerce Add to Cart</h3>
+            <p>Product: Tracking System Pro</p>
+
+            <button id="addCart">Add to Cart</button>
+
+            <p id="msg"></p>
+        </div>
+
+        <div id="log"></div>
+
+    </div>
+
+    <script>
+
+        function logEvent(message) {
+
+            const logDiv = document.getElementById("log");
+
+            const item = document.createElement("div");
+            item.className = "log-item";
+
+            item.textContent =
+                "[" + new Date().toLocaleTimeString() + "] " + message;
+
+            logDiv.prepend(item);
+
+            console.log(message);
+        }
+
+
+        // Add to Cart Event
+        document
+            .getElementById("addCart")
+            .addEventListener("click", function () {
+
+                logEvent("Product added to cart: Tracking System Pro");
+
+                document.getElementById("msg").innerHTML =
+                    "Item successfully added to cart";
+            });
+
+    
+
+    </script>
+
+</body>
+</html>

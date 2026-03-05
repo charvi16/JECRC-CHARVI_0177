@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Using Variable</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  <div class="p-6 mt-10 max-w-sm mx-auto rounded-xl shadow-md flex items-center space-x-4 bg-pink-500">
+    <div>
+        <h1 id="something">Some flattering Line</h1>
+        <p id="Greeting"></p>
+        <h1 class="text-yellow-500">This is us learning variables in JS</h1>
+        <p id="data"></p>
+    </div>
+  </div>
+</body>
+<script>
+    var greeting = "Welcome to JS";
+    console.log(greeting);
+    let name = "charvi";
+    console.log("Hello, " + name + "!");
+    
+
+    if(true){
+        var company = "PaliraInc";
+        const loca = "mumbai";
+        const saal = "2026";
+        document.getElementById("Greeting").innerHTML = greeting + " " + name;
+        console.log(`Inside ${company}, ${loca}, {saal}`);
+        document.getElementById("data").innerHTML = company + " " + loca + " " + saal;
+    }
+    // console.log(company + " " + loca + " " + saal);
+
+    function testVAr(){
+        var name = "Charvi Agarwal";
+        console.log(name);
+    }
+
+    testVAr();
+
+    // console.log(null + 1);
+    // console.log("5" + 3);
+    // console.log("5" - 3);
+    // console.log(true + false);
+
+    // console.log(typeof []);
+    // console.log(typeof null);
+    // console.log(typeof 123n);
+
+    let name2 = "david";
+    let age = 30;
+    let isStudent = true;
+    let salary;
+    let bonus = null;
+    let bignumber = 123n;
+    console.log(typeof name2);
+    console.log(typeof age);
+    console.log(typeof isStudent);
+    console.log(typeof salary);
+    console.log(typeof bonus);
+    console.log(typeof bignumber);
+
+    let person = {name : "chars", age : 20};
+    let numbers = [1,2,34,5,6];
+    let today = new Date();
+    function greet(){
+        return "Welcome!";
+    }
+
+    console.log(typeof person);
+    console.log(typeof numbers);
+    console.log(typeof today);
+    console.log(typeof greet)
+
+
+</script>
+</html>   
