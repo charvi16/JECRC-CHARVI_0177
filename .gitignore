@@ -1,0 +1,42 @@
+#######################################
+## Visual Studio / .NET
+#######################################
+
+# User-specific
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+bin/
+obj/
+Debug/
+Release/
+
+# Visual Studio cache
+.vs/
+
+# NuGet
+packages/
+*.nupkg
+
+# Logs
+*.log
+
+# OS files
+Thumbs.db
+.DS_Store
+
+#######################################
+## ASP.NET Core
+#######################################
+
+wwwroot/lib/
+
+#######################################
+## VS Code
+#######################################
+
+.vscode/
