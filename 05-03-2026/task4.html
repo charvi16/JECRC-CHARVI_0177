@@ -1,0 +1,84 @@
+<!-- Customer Support Chat Mouse Hover
+Description
+Customer Support Chat Mouse Hover
+Scenario:
+A chat icon shows tooltip when mouse hovers over it.
+
+Requirement
+
+Use mouseover
+
+Display message
+
+<div id="chatIcon">💬 Chat Support</div>
+<p id="info"></p>
+
+<script>
+
+document.getElementById("chatIcon").addEventListener("mouseover", function(){
+
+    document.getElementById("info").innerText =
+    "Click here to talk with customer support";
+
+    console.log("Mouse hovered over chat icon");
+
+});
+
+</script> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Customer Support Chat Hover</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 100px;
+    background-color: #f4f4f4;
+}
+
+#chatIcon{
+    display: inline-block;
+    padding: 15px 25px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+#chatIcon:hover{
+    background-color: #0056b3;
+}
+
+#info{
+    margin-top: 20px;
+    font-size: 16px;
+    color: #333;
+}
+</style>
+</head>
+
+<body>
+
+<div id="chatIcon">💬 Chat Support</div>
+<p id="info"></p>
+
+<script>
+
+document.getElementById("chatIcon").addEventListener("mouseover", function(){
+
+    document.getElementById("info").innerText =
+    "Click here to talk with customer support";
+
+    console.log("Mouse hovered over chat icon");
+
+});
+
+</script>
+
+</body>
+</html>

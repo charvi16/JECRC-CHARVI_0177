@@ -1,0 +1,101 @@
+<!-- Website Double Click to Like Product
+Description
+Scenario:
+In many apps (Instagram, shopping apps), double-clicking a product image likes the product.
+
+Requirement
+
+Use dblclick
+
+Increase like counter
+
+<img id="product" src="https://via.placeholder.com/200">
+<p>Likes: <span id="count">0</span></p>
+
+<script>
+let likes = 0;
+
+document.getElementById("product").addEventListener("dblclick", function(){
+
+    likes++;
+
+    document.getElementById("count").innerText = likes;
+
+    console.log("Product liked", likes);
+
+});
+</script> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Double Click to Like Product</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 80px;
+    background: #f5f5f5;
+}
+
+.container{
+    background: white;
+    padding: 30px;
+    display: inline-block;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+img{
+    width:200px;
+    border-radius:10px;
+    cursor:pointer;
+    transition: transform 0.2s;
+}
+
+img:hover{
+    transform: scale(1.05);
+}
+
+.likes{
+    margin-top:15px;
+    font-size:18px;
+    color:#333;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Product</h2>
+
+<img id="product" src="https://via.placeholder.com/200" alt="Product Image">
+
+<p class="likes">Likes: <span id="count">0</span></p>
+
+<p>Double click the image to like ❤️</p>
+
+</div>
+
+<script>
+
+let likes = 0;
+
+document.getElementById("product").addEventListener("dblclick", function(){
+
+    likes++;
+
+    document.getElementById("count").innerText = likes;
+
+    console.log("Product liked", likes);
+
+});
+
+</script>
+
+</body>
+</html>
