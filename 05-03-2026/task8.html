@@ -1,0 +1,145 @@
+<!-- Track Button Click Analytics
+Scenario:
+A company wants to track which buttons users click the most.
+
+<button onclick="trackClick('Buy Now')">Buy Now</button>
+<button onclick="trackClick('Add Wishlist')">Add Wishlist</button>
+
+<script>
+
+function trackClick(action){
+
+logger.log("INFO","User Action:",action);
+
+}
+
+</script> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Button Click Analytics</title>
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f6f9;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.container{
+    background:white;
+    padding:30px;
+    width:400px;
+    border-radius:8px;
+    box-shadow:0 3px 8px rgba(0,0,0,0.15);
+    text-align:center;
+}
+
+button{
+    padding:12px 20px;
+    margin:10px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    color:white;
+    font-size:15px;
+}
+
+.buy{
+    background:#28a745;
+}
+
+.wishlist{
+    background:#007bff;
+}
+
+button:hover{
+    opacity:0.9;
+}
+
+#log{
+    margin-top:20px;
+    text-align:left;
+    border-top:1px solid #ddd;
+    padding-top:10px;
+    max-height:180px;
+    overflow:auto;
+}
+
+.log-item{
+    padding:4px 0;
+    border-bottom:1px solid #eee;
+    font-size:14px;
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+<h2>Button Click Analytics</h2>
+
+<button class="buy" onclick="trackClick('Buy Now')">
+Buy Now
+</button>
+
+<button class="wishlist" onclick="trackClick('Add Wishlist')">
+Add Wishlist
+</button>
+
+<div id="log"></div>
+
+</div>
+
+
+<script>
+
+const logger = {
+
+log:function(level,message,data){
+
+    const logEntry={
+        level:level,
+        message:message,
+        data:data,
+        time:new Date().toLocaleTimeString()
+    };
+
+    console.log("Analytics Log:",logEntry);
+
+    const logDiv=document.getElementById("log");
+
+    const item=document.createElement("div");
+    item.className="log-item";
+
+    item.textContent=
+    "["+logEntry.time+"] "+message+" "+data;
+
+    logDiv.prepend(item);
+
+}
+
+};
+
+
+function trackClick(action){
+
+logger.log("INFO","User Action:",action);
+
+}
+
+</script>
+
+</body>
+
+</html>

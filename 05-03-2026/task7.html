@@ -1,0 +1,152 @@
+<!-- Log Form Validation Errors
+Scenario:
+If a user submits an invalid form, developers log the issue.
+
+function validateForm(){
+
+const email = document.getElementById("email").value;
+
+if(!email.includes("@")){
+
+logger.log("WARN","Invalid Email Entered",email);
+
+alert("Invalid email");
+
+}
+
+} -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Form Validation Logger</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f6f9;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.container{
+    background:white;
+    padding:30px;
+    width:350px;
+    border-radius:8px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.15);
+    text-align:center;
+}
+
+input{
+    width:90%;
+    padding:10px;
+    margin:10px 0;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+button{
+    padding:10px 15px;
+    border:none;
+    background:#007bff;
+    color:white;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#0056b3;
+}
+
+#log{
+    margin-top:20px;
+    text-align:left;
+    font-size:14px;
+    max-height:150px;
+    overflow:auto;
+    border-top:1px solid #ddd;
+    padding-top:10px;
+}
+
+.log-item{
+    padding:4px 0;
+    border-bottom:1px solid #eee;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Email Validation</h2>
+
+<input id="email" placeholder="Enter Email">
+
+<br>
+
+<button onclick="validateForm()">Submit</button>
+
+<div id="log"></div>
+
+</div>
+
+<script>
+
+const logger = {
+
+log:function(level,message,data){
+
+    const logEntry={
+        level:level,
+        message:message,
+        data:data,
+        time:new Date().toLocaleTimeString()
+    };
+
+    console.log("Log Sent:",logEntry);
+
+    const logDiv=document.getElementById("log");
+
+    const item=document.createElement("div");
+    item.className="log-item";
+
+    item.textContent=
+    "["+logEntry.time+"] "+level+" : "+message+" -> "+data;
+
+    logDiv.prepend(item);
+
+}
+
+};
+
+
+function validateForm(){
+
+const email=document.getElementById("email").value;
+
+if(!email.includes("@")){
+
+logger.log("WARN","Invalid Email Entered",email);
+
+alert("Invalid email");
+
+return;
+
+}
+
+alert("Email Submitted Successfully");
+
+}
+
+</script>
+
+</body>
+
+</html>
