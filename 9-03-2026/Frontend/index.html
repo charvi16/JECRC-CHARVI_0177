@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Notion Todo</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Daily Tasks</h1>
+
+<div class="controls">
+
+<input id="taskInput" placeholder="Add a task">
+
+<select id="priority">
+<option value="Low">Low</option>
+<option value="Medium">Medium</option>
+<option value="High">High</option>
+</select>
+
+<button onclick="addTask()">Add</button>
+
+</div>
+
+<input id="searchBox" placeholder="Search tasks..." onkeyup="searchTasks()">
+
+<div class="filters">
+<button onclick="filterTasks('all')">All</button>
+<button onclick="filterTasks('active')">Active</button>
+<button onclick="filterTasks('completed')">Completed</button>
+</div>
+
+<button onclick="toggleDarkMode()">🌙 Dark Mode</button>
+
+<ul id="taskList"></ul>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
