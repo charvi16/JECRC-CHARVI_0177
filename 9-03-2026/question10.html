@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dark Mode Toggle</title>
+
+<style>
+
+body{
+    background-color: pink;
+    margin:0;
+    width:100vw;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+#darkMode{
+    width:10vw;
+    height:8vh;
+    outline:none;
+    border-radius:10vh;
+    cursor:pointer;
+}
+
+.dark{
+    background:black;
+    color:white;
+}
+
+.display-area{
+    width:20vw;
+    height:30vh;
+    background-color:white;
+    color:black;
+    margin-top:20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.dark .display-area{
+    background:#333;
+    color:white;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+    <button id="darkMode">Toggle Dark Mode</button>
+
+    <div class="display-area">
+        <h1>Helloooooo</h1>
+    </div>
+</div>
+
+<script>
+
+const darkMode = document.getElementById('darkMode');
+
+darkMode.addEventListener('click', () => {
+    document.body.classList.toggle("dark");
+});
+
+</script>
+
+</body>
+</html>
