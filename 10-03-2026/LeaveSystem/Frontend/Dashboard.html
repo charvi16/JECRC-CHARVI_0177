@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Dashboard</h2>
+    <p id="welcome"></p>
+
+    <div id="employeeSection" style="display:none;">
+      <a href="apply-leave.html"><button>Apply Leave</button></a>
+      <a href="leave-list.html"><button>My Leaves</button></a>
+    </div>
+
+    <div id="managerSection" style="display:none;">
+      <a href="leave-list.html"><button>View All Leave Requests</button></a>
+    </div>
+
+    <div id="adminSection" style="display:none;">
+      <a href="leave-list.html"><button>View Leave Requests</button></a>
+    </div>
+
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    loadDashboard();
+  </script>
+</body>
+</html>

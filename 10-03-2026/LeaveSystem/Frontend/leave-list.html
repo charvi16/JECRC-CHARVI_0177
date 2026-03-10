@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Leave Requests</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Leave Requests</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Employee</th>
+          <th>Type</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Reason</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="leaveTableBody"></tbody>
+    </table>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    loadLeaves();
+  </script>
+</body>
+</html>
