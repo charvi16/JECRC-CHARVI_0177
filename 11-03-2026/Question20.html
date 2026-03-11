@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pass Students Only</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f4f4;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.container{
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+    width:420px;
+    text-align:center;
+}
+
+button{
+    padding:10px 20px;
+    border:none;
+    background:#28a745;
+    color:white;
+    border-radius:6px;
+    cursor:pointer;
+    margin-top:15px;
+}
+
+button:hover{
+    background:#1e7e34;
+}
+
+.result{
+    margin-top:20px;
+    font-size:18px;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Pass Students Only</h2>
+
+<p><b>All Marks:</b> <span id="original"></span></p>
+
+<button onclick="findPassStudents()">Show Passing Students</button>
+
+<p class="result" id="result"></p>
+
+</div>
+
+<script>
+
+const marks = [35, 67, 48, 90, 55, 30];
+
+document.getElementById("original").textContent = JSON.stringify(marks);
+
+function findPassStudents(){
+
+    const passingStudents = marks.filter(mark => mark > 50);
+
+    document.getElementById("result").textContent =
+        "Passing Students: " + JSON.stringify(passingStudents);
+}
+
+</script>
+
+</body>
+</html>

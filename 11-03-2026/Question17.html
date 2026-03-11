@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Online Order Filtering</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f4f4;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.container{
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+    width:420px;
+    text-align:center;
+}
+
+button{
+    padding:10px 20px;
+    border:none;
+    background:#28a745;
+    color:white;
+    border-radius:6px;
+    cursor:pointer;
+    margin-top:15px;
+}
+
+button:hover{
+    background:#1e7e34;
+}
+
+.result{
+    margin-top:20px;
+    font-size:18px;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Online Order Filtering</h2>
+
+<p><b>All Orders:</b> <span id="original"></span></p>
+
+<button onclick="filterOrders()">Show Orders Above ₹1000</button>
+
+<p class="result" id="result"></p>
+
+</div>
+
+<script>
+
+const orders = [450, 1200, 700, 3000, 1500];
+
+document.getElementById("original").textContent = JSON.stringify(orders);
+
+function filterOrders(){
+
+    const filteredOrders = orders.filter(order => order > 1000);
+
+    document.getElementById("result").textContent =
+        "Filtered Orders: " + JSON.stringify(filteredOrders);
+}
+
+</script>
+
+</body>
+</html>

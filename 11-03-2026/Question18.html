@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Shopping Cart Total</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f4f4;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.container{
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+    width:420px;
+    text-align:center;
+}
+
+button{
+    padding:10px 20px;
+    border:none;
+    background:#ff6b00;
+    color:white;
+    border-radius:6px;
+    cursor:pointer;
+    margin-top:15px;
+}
+
+button:hover{
+    background:#e65c00;
+}
+
+.result{
+    margin-top:20px;
+    font-size:18px;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Shopping Cart Total</h2>
+
+<p><b>Cart Items:</b> <span id="original"></span></p>
+
+<button onclick="calculateTotal()">Calculate Total</button>
+
+<p class="result" id="result"></p>
+
+</div>
+
+<script>
+
+const cart = [500, 1200, 800, 1500];
+
+document.getElementById("original").textContent = JSON.stringify(cart);
+
+function calculateTotal(){
+
+    const total = cart.reduce((sum, price) => sum + price, 0);
+
+    document.getElementById("result").textContent =
+        "Total Cart Value: ₹" + total;
+}
+
+</script>
+
+</body>
+</html>
