@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Promise Calculator</title>
+
+<style>
+
+body{
+font-family: Arial;
+background:#f5f7fb;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.container{
+background:white;
+padding:30px;
+border-radius:10px;
+width:420px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+h2{
+text-align:center;
+margin-bottom:20px;
+}
+
+input{
+width:100%;
+padding:10px;
+margin-bottom:12px;
+border:1px solid #ddd;
+border-radius:6px;
+}
+
+button{
+width:100%;
+padding:10px;
+background:#007bff;
+border:none;
+color:white;
+border-radius:6px;
+cursor:pointer;
+font-size:15px;
+}
+
+button:hover{
+background:#0056b3;
+}
+
+#state{
+margin-top:15px;
+font-weight:bold;
+text-align:center;
+}
+
+.pending{
+color:orange;
+}
+
+.fulfilled{
+color:green;
+}
+
+.rejected{
+color:red;
+}
+
+.results{
+margin-top:15px;
+}
+
+.results p{
+margin:5px 0;
+font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Async Calculator</h2>
+
+<input type="number" id="num1" placeholder="Enter first number">
+<input type="number" id="num2" placeholder="Enter second number">
+
+<button onclick="calculate()">Calculate</button>
+
+<div id="state">State: Idle</div>
+
+<div class="results">
+<p id="addResult"></p>
+<p id="subtractResult"></p>
+<p id="multiplyResult"></p>
+<p id="divideResult"></p>
+</div>
+
+</div>
+
+<script type="module">
+
+const Utils =`
+export const PI = 3.14159;
+
+export function add(a,b){
+return a+b;
+}
+
+export function subtract(a,b){
+return a-b;
+}
+
+export function multiply(a,b){
+return a*b;
+}
+
+export function divide(a,b){
+if(b===0){
+throw new Error("Cannot divide by zero");
+}
+return a/b;
+}
+`;
+
+const blob = new Blob([Utils],{type:'text/javascript'});
+const url = URL.createObjectURL(blob);
+
+import(url).then(module => {
+
+window.calculate = function(){
+
+const a = Number(document.getElementById('num1').value);
+const b = Number(document.getElementById('num2').value);
+const state = document.getElementById('state');
+
+const calculationPromise = new Promise((resolve,reject)=>{
+
+state.innerText="State: Pending...";
+state.className="pending";
+
+setTimeout(()=>{
+
+if(isNaN(a) || isNaN(b)){
+reject("Invalid input. Enter numbers.");
+}
+else{
+
+try{
+resolve({
+add: module.add(a,b),
+subtract: module.subtract(a,b),
+multiply: module.multiply(a,b),
+divide: module.divide(a,b)
+});
+}
+catch(error){
+reject(error.message);
+}
+
+}
+
+},2000);
+
+});
+
+
+calculationPromise.then(result=>{
+
+state.innerText="State: Fulfilled";
+state.className="fulfilled";
+
+document.getElementById('addResult').innerText="Add: "+result.add;
+document.getElementById('subtractResult').innerText="Subtract: "+result.subtract;
+document.getElementById('multiplyResult').innerText="Multiply: "+result.multiply;
+document.getElementById('divideResult').innerText="Divide: "+result.divide;
+
+})
+
+.catch(error=>{
+
+state.innerText="State: Rejected";
+state.className="rejected";
+
+document.getElementById('addResult').innerText="";
+document.getElementById('subtractResult').innerText="";
+document.getElementById('multiplyResult').innerText="";
+document.getElementById('divideResult').innerText="";
+
+alert(error);
+
+});
+
+}
+
+}).catch(error=>{
+console.error("Error loading module:",error);
+});
+
+</script>
+
+</body>
+</html>
