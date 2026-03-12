@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dynamic Module Example</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #eef2ff, #dbeafe);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 700px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+      padding: 30px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #1e3a8a;
+      margin-bottom: 10px;
+    }
+
+    p {
+      text-align: center;
+      color: #555;
+      margin-bottom: 25px;
+    }
+
+    .results {
+      display: grid;
+      gap: 15px;
+    }
+
+    .card {
+      background: #f8fafc;
+      border: 1px solid #dbeafe;
+      border-left: 5px solid #2563eb;
+      border-radius: 10px;
+      padding: 15px 18px;
+      font-size: 16px;
+      color: #222;
+    }
+
+    .label {
+      font-weight: bold;
+      color: #1d4ed8;
+    }
+
+    .error {
+      border-left-color: #dc2626;
+      color: #b91c1c;
+      background: #fef2f2;
+      border-color: #fecaca;
+    }
+
+    .code-box {
+      margin-top: 25px;
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 18px;
+      border-radius: 12px;
+      overflow-x: auto;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Dynamic JavaScript Module Demo</h1>
+    <p>Results loaded from a module created using Blob and import().</p>
+
+    <div class="results" id="results"></div>
+
+    <div class="code-box">
+      <pre>
+This example dynamically creates a JS module using Blob,
+then imports it and displays the values below.
+      </pre>
+    </div>
+  </div>
+
+  <script type="module">
+    const Utils = `
+      export const PI = 3.14;
+
+      export function add(a, b) {
+        return a + b;
+      }
+
+      export function sub(a, b) {
+        return a - b;
+      }
+
+      export function mul(a, b) {
+        return a * b;
+      }
+
+      export function div(a, b) {
+        if (b == 0) throw new Error("Cannot divide by zero");
+        return a / b;
+      }
+    `;
+
+    const blob = new Blob([Utils], { type: "text/javascript" });
+    const url = URL.createObjectURL(blob);
+
+    const resultsDiv = document.getElementById("results");
+
+    function addCard(label, value, isError = false) {
+      const card = document.createElement("div");
+      card.className = isError ? "card error" : "card";
+      card.innerHTML = `<span class="label">${label}</span> ${value}`;
+      resultsDiv.appendChild(card);
+    }
+
+    import(url)
+      .then((module) => {
+        addCard("PI:", module.PI);
+        addCard("Addition (10 + 5):", module.add(10, 5));
+        addCard("Subtraction (10 - 5):", module.sub(10, 5));
+        addCard("Multiplication (10 * 5):", module.mul(10, 5));
+        addCard("Division (10 ÷ 5):", module.div(10, 5));
+
+        try {
+          module.div(10, 0);
+        } catch (err) {
+          addCard("Division Error:", err.message, true);
+        }
+      })
+      .catch((error) => {
+        addCard("Module Loading Error:", error.message, true);
+      });
+  </script>
+</body>
+</html>
