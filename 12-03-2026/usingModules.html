@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Email Validation</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            padding: 40px;
+        }
+
+        h2 {
+            margin-top: 40px;
+        }
+
+        .container {
+            display: flex;
+            gap: 40px;
+        }
+
+        .box {
+            border: 1px solid #ccc;
+            padding: 20px;
+            width: 300px;
+            border-radius: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 6px 12px;
+        }
+
+        .result {
+            margin-top: 10px;
+            font-weight: bold;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Email Validation</h2>
+
+    <div class="container">
+        <div class="box">
+            <h3>Check Email 1</h3>
+            <input type="text" id="email1" placeholder="Enter email" />
+            <button onclick="checkEmail1()">Validate</button>
+            <div id="result1" class="result"></div>
+        </div>
+
+        <div class="box">
+            <h3>Check Email 2</h3>
+            <input type="text" id="email2" placeholder="Enter email" />
+            <button onclick="checkEmail2()">Validate</button>
+            <div id="result2" class="result"></div>
+        </div>
+
+        <div class="box">
+            <h3>Check Email 3</h3>
+            <input type="text" id="email3" placeholder="Enter email" />
+            <button onclick="checkEmail3()">Validate</button>
+            <div id="result3" class="result"></div>
+        </div>
+    </div>
+
+    <script>
+        function formatDate(date) {
+            return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+        }
+
+        function validateEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        function checkEmail1() {
+            const email = document.getElementById("email1").value;
+            const result = validateEmail(email) ? "Valid Email" : "Invalid Email";
+            document.getElementById("result1").innerText = result;
+        }
+
+        function checkEmail2() {
+            const email = document.getElementById("email2").value;
+            const result = validateEmail(email) ? "Valid Email" : "Invalid Email";
+            document.getElementById("result2").innerText = result;
+        }
+
+        const utils = {
+        formatDate(date)
+        {
+            return `⁠${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`;
+        },
+
+        validateEmail(email)
+        {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+        };
+        document.getElementById("date3").innerText = utils.formatDate(new Date());
+        function checkEmail3()
+        {
+            const email = document.getElementById('email3').value;
+            const result = validateEmail(email) ? 'Valid Email' : 'Invalid Email';
+            document.getElementById('result3').innerText = result;
+        }
+
+
+    </script>
+
+</body>
+</html>
