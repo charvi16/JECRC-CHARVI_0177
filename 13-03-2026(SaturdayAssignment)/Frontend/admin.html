@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body onload="loadCourses(); loadDepartments(); loadEnrollmentHistory();">
+  <div class="container">
+    <h2>Admin Dashboard</h2>
+    <button onclick="logout()">Logout</button>
+
+    <h3>Add Course</h3>
+    <input type="text" id="courseName" placeholder="Course Name" />
+    <select id="departmentId"></select>
+    <input type="number" id="credits" placeholder="Credits" />
+    <input type="number" id="seatsAvailable" placeholder="Seats Available" />
+    <button onclick="addCourse()">Add Course</button>
+
+    <h3>All Courses</h3>
+    <input type="text" id="searchKeyword" placeholder="Search by name or department" />
+    <button onclick="searchCourses()">Search</button>
+    <div id="coursesList"></div>
+
+    <h3>Enrollment History</h3>
+    <div id="historyList"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

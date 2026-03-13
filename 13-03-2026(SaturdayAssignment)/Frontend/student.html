@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Student Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body onload="loadCourses(); loadMyEnrollments();">
+  <div class="container">
+    <h2>Student Dashboard</h2>
+    <button onclick="logout()">Logout</button>
+
+    <h3>Search Courses</h3>
+    <input type="text" id="searchKeyword" placeholder="Search by name or department" />
+    <button onclick="searchCourses()">Search</button>
+
+    <h3>Available Courses</h3>
+    <div id="coursesList"></div>
+
+    <h3>My Enrollments</h3>
+    <div id="myEnrollments"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

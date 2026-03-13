@@ -1,0 +1,6 @@
+@smartCourse_HostAddress = http://localhost:5196
+
+GET {{smartCourse_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
