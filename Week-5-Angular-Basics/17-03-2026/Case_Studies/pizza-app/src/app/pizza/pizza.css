@@ -1,0 +1,14 @@
+*{
+    background: pink;
+}
+
+input{
+    outline: none;
+    border: none;
+    background: white;
+    border-radius: 20vh;
+}
+
+.order{
+    color: green;
+}

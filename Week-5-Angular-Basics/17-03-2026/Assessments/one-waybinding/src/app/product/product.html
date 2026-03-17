@@ -1,0 +1,14 @@
+<h2>Product Component</h2>
+<p>Product list will appear here</p>
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+    </tr>
+
+    <tr *ngFor = "let product of products">
+
+    <td>{{product.Name}}</td>
+    <td>{{product.Price}}</td>
+        </tr>
+</table>

@@ -1,0 +1,25 @@
+<div class="container">
+
+<h2>Pizza's</h2>
+
+<label>Pizza Name :</label>
+<input type="text" [(ngModel)] = "pizzaName">
+
+<br>
+
+<label>Quantity :</label>
+<input type="number" [(ngModel)] = "quantity">
+
+<br>
+
+<label>Delivery Address :</label>
+<input [(ngModel)] = "address">
+
+<hr>
+
+<h3 class="order">Order Summary</h3>
+
+<p>Pizza : {{pizzaName}}</p>
+<p>Quantity : {{quantity}}</p>
+<p>Address : {{address}}</p>
+</div>
