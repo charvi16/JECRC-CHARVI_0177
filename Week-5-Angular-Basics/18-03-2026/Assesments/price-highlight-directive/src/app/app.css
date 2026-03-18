@@ -1,0 +1,65 @@
+/* Page styling */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f5f7fa;
+}
+
+/* Container */
+.container {
+  width: 60%;
+  margin: 40px auto;
+  text-align: center;
+}
+
+/* Heading */
+h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Card styling */
+.card {
+  background: #ffffff;
+  padding: 15px 20px;
+  margin: 15px 0;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover effect */
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+}
+
+/* Product name */
+.card h3 {
+  margin: 0 0 8px 0;
+  color: #222;
+}
+
+/* Price text */
+.price {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/* High price (red) */
+.high-price {
+  color: #e53935;
+  background-color: #ffe5e5;
+  padding: 5px 10px;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+/* Low price (green) */
+.low-price {
+  color: #2e7d32;
+  background-color: #e5ffe5;
+  padding: 5px 10px;
+  border-radius: 6px;
+  display: inline-block;
+}

@@ -1,0 +1,30 @@
+<div class="container">
+
+  <h2>Dynamic Role-Based Dashboard</h2>
+
+  <!-- Select User -->
+  <label>Select User:</label>
+  <select [(ngModel)]="selectedUser">
+    <option *ngFor="let user of users" [ngValue]="user">
+      {{user.name}} ({{user.role}})
+    </option>
+  </select>
+
+  <p><strong>Current Role:</strong> {{selectedUser.role}}</p>
+
+  <!-- Admin -->
+  <div *appRole="'admin'; appRoleUser: selectedUser.role" class="box admin">
+    👑 Admin Panel
+  </div>
+
+  <!-- User -->
+  <div *appRole="'user'; appRoleUser: selectedUser.role" class="box user">
+    👤 User Panel
+  </div>
+
+  <!-- Manager -->
+  <div *appRole="'manager'; appRoleUser: selectedUser.role" class="box manager">
+    🧑‍💼 Manager Panel
+  </div>
+
+</div>

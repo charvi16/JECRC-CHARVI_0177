@@ -1,0 +1,14 @@
+<div class="container" [appTheme]="currentTheme">
+
+  <h2>Theme Switch Dashboard</h2>
+
+  <button class="toggle-btn" (click)="toggleTheme()">
+    Switch to {{ currentTheme === 'light' ? 'Dark' : 'Light' }} Mode
+  </button>
+
+  <div class="card">
+    <h3>Welcome</h3>
+    <p>This is a dynamic theme using a custom directive.</p>
+  </div>
+
+</div>

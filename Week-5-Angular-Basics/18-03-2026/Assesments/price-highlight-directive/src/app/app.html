@@ -1,0 +1,11 @@
+<div class="container">
+  <h2>Product Price Dashboard</h2>
+
+  <div *ngFor="let p of products" class="card">
+    <h3>{{ p.name }}</h3>
+
+    <p class="price" [appPriceHighlight]="p.price">
+      ₹{{ p.price }}
+    </p>
+  </div>
+</div>

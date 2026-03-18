@@ -1,0 +1,22 @@
+<div class="container">
+
+  <h2>Click Block Dashboard</h2>
+
+  <button class="toggle-btn" (click)="toggleAccess()">
+    Toggle Access (Currently: {{ allowAction ? 'Allowed' : 'Blocked' }})
+  </button>
+
+  <div class="card">
+    <h3>Secure Action</h3>
+
+    <button 
+      class="action-btn"
+      [appClickBlock]="allowAction"
+      (click)="performAction()"
+    >
+      Perform Action
+    </button>
+
+  </div>
+
+</div>
