@@ -1,0 +1,26 @@
+.container {
+  width: 60%;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+}
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.topper {
+  border: 2px solid gold;
+  background-color: #fff8dc;
+}
+
+h2 {
+  text-align: center;
+}
+
+h3 {
+  margin: 0 0 10px 0;
+}

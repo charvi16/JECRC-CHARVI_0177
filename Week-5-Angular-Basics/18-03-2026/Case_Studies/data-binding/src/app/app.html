@@ -1,0 +1,41 @@
+<div class="container">
+  <h2>Product Order System</h2>
+
+  <!-- Interpolation -->
+  <h1>{{ productName }}</h1>
+  <p>Price : Rs.{{price}}</p>
+
+  <img [src]="imageUrl" width="200">
+
+  <br>
+
+  <!-- Event Binding -->
+   <button (click)="increaseQty()">+</button>
+   <button (click)="decreaseQty()">-</button>
+
+   <p>Quantity : {{quantity}}</p>
+
+   <br>
+
+   <button [disabled]="!isAvailable" (click)="toggleAvailable()">
+    {{isAvailable ? "in Stock" : "Out of stock"}}
+   </button>
+
+   <br>
+
+   <!-- Two-way-binding -->
+    <h3>Customer Details :</h3>
+    <input type="text" [(ngModel)]="customerName" placeholder="Enter Name">
+   <br>
+   <textarea [(ngModel)]="address" placeholder="Enter Address"></textarea>
+
+   <br>
+
+   <!-- Interpolation -->
+   <h3>Order Summary</h3>
+
+   <p>Nmae : {{customerName}}</p>
+   <p>Address : {{ address}}</p>
+   <p>Total Amount : {{ getTotal() }}</p>
+
+</div>
