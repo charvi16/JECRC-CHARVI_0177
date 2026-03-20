@@ -1,0 +1,19 @@
+<div class="details-page" *ngIf="product">
+  <button class="back-btn" (click)="back.emit()">← Back to Products</button>
+
+  <div class="details-card">
+    <div class="left">
+      <img [src]="product.image" [alt]="product.name" />
+    </div>
+
+    <div class="right">
+      <h2>{{ product.name }}</h2>
+      <p class="category">{{ product.category }}</p>
+      <p class="rating">⭐ {{ product.rating }}</p>
+      <p class="description">{{ product.description }}</p>
+      <p class="price">₹{{ product.price }}</p>
+
+      <button class="add-btn" (click)="add.emit(product)">Add to Cart</button>
+    </div>
+  </div>
+</div>

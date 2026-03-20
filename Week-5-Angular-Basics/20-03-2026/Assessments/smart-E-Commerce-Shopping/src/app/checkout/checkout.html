@@ -1,0 +1,136 @@
+<div class="checkout-page">
+  <div class="checkout-left">
+    <h2>Checkout</h2>
+
+    <div class="form-card">
+      <h3>Customer Details</h3>
+
+      <label>Full Name</label>
+      <input type="text" [(ngModel)]="user.fullName" name="fullName" />
+
+      <label>Address Line</label>
+      <input type="text" [(ngModel)]="user.addressLine" name="addressLine" />
+
+      <label>Email</label>
+      <input type="email" [(ngModel)]="user.email" name="email" />
+
+      <label>Phone Number</label>
+      <input type="number" [(ngModel)]="user.phoneNumber" name="phoneNumber" />
+
+      <label>ZIP Code</label>
+      <input type="number" [(ngModel)]="user.zipCode" name="zipCode" />
+
+      <label>Gender</label>
+      <div class="inline-group">
+        <label><input type="radio" [(ngModel)]="user.gender" name="gender" value="Male" /> Male</label>
+        <label><input type="radio" [(ngModel)]="user.gender" name="gender" value="Female" /> Female</label>
+        <label><input type="radio" [(ngModel)]="user.gender" name="gender" value="Other" /> Other</label>
+      </div>
+
+      <label>Delivery Type</label>
+      <div class="inline-group">
+        <label><input type="radio" [(ngModel)]="user.deliveryType" name="deliveryType" value="Standard" /> Standard</label>
+        <label><input type="radio" [(ngModel)]="user.deliveryType" name="deliveryType" value="Express" /> Express</label>
+      </div>
+
+      <div class="inline-group column-mobile">
+        <label><input type="checkbox" [(ngModel)]="user.acceptTerms" name="acceptTerms" /> Accept Terms & Conditions</label>
+        <label><input type="checkbox" [(ngModel)]="user.subscribeOffers" name="subscribeOffers" /> Subscribe to Offers</label>
+      </div>
+
+      <label>City</label>
+      <select [(ngModel)]="user.city" name="city">
+        <option value="">Select City</option>
+        <option>Jaipur</option>
+        <option>Delhi</option>
+        <option>Mumbai</option>
+        <option>Bangalore</option>
+      </select>
+
+      <label>State</label>
+      <select [(ngModel)]="user.state" name="state">
+        <option value="">Select State</option>
+        <option>Rajasthan</option>
+        <option>Delhi</option>
+        <option>Maharashtra</option>
+        <option>Karnataka</option>
+      </select>
+
+      <label>Country</label>
+      <select [(ngModel)]="user.country" name="country">
+        <option value="">Select Country</option>
+        <option>India</option>
+        <option>USA</option>
+        <option>UK</option>
+      </select>
+
+      <label>Delivery Date</label>
+      <input type="date" [(ngModel)]="user.deliveryDate" name="deliveryDate" />
+
+      <label>Additional Instructions</label>
+      <textarea [(ngModel)]="user.instructions" name="instructions" rows="4"></textarea>
+
+      <label>Upload ID Proof / Invoice</label>
+      <input type="file" (change)="onFileSelected($event)" />
+      <p class="file-name" *ngIf="user.idProof">Selected File: {{ user.idProof }}</p>
+
+      <h3>Multiple Addresses</h3>
+      <div *ngFor="let address of user.addresses; let i = index">
+        <input type="text" [(ngModel)]="user.addresses[i]" [name]="'address' + i" placeholder="Enter extra address" />
+      </div>
+      <button type="button" class="secondary-btn" (click)="addAddress()">+ Add Address</button>
+
+      <h3>Multiple Payment Methods</h3>
+      <div *ngFor="let method of user.paymentMethods; let i = index">
+        <input type="text" [(ngModel)]="user.paymentMethods[i]" [name]="'paymentMethod' + i" placeholder="Enter payment method name" />
+      </div>
+      <button type="button" class="secondary-btn" (click)="addPaymentMethod()">+ Add Payment Method</button>
+
+      <h3>Payment Section</h3>
+      <div class="inline-group payment-options">
+        <label><input type="radio" [(ngModel)]="user.paymentType" name="paymentType" value="Credit Card" /> Credit Card</label>
+        <label><input type="radio" [(ngModel)]="user.paymentType" name="paymentType" value="Debit Card" /> Debit Card</label>
+        <label><input type="radio" [(ngModel)]="user.paymentType" name="paymentType" value="UPI" /> UPI</label>
+        <label><input type="radio" [(ngModel)]="user.paymentType" name="paymentType" value="Cash on Delivery" /> Cash on Delivery</label>
+      </div>
+
+      <div *ngIf="user.paymentType === 'Credit Card' || user.paymentType === 'Debit Card'">
+        <label>Card Number</label>
+        <input type="text" [(ngModel)]="user.cardNumber" name="cardNumber" />
+
+        <label>Expiry Date</label>
+        <input type="month" [(ngModel)]="user.expiryDate" name="expiryDate" />
+
+        <label>CVV</label>
+        <input type="password" [(ngModel)]="user.cvv" name="cvv" />
+      </div>
+
+      <div *ngIf="user.paymentType === 'UPI'">
+        <label>UPI ID</label>
+        <input type="text" [(ngModel)]="user.upiId" name="upiId" />
+      </div>
+
+      <button type="button" class="place-order-btn" (click)="placeOrder()">
+        Place Order
+      </button>
+    </div>
+  </div>
+
+  <div class="checkout-right">
+    <div class="summary-card">
+      <h3>Order Summary</h3>
+
+      <div *ngIf="cart.length === 0">
+        <p>No items in cart.</p>
+      </div>
+
+      <div *ngFor="let item of cart" class="summary-item">
+        <span>{{ item.name }} x {{ item.quantity }}</span>
+        <span>₹{{ item.price * item.quantity }}</span>
+      </div>
+
+      <hr />
+      <p class="grand-total">Total: ₹{{ getCartTotal() }}</p>
+    </div>
+  </div>
+</div>

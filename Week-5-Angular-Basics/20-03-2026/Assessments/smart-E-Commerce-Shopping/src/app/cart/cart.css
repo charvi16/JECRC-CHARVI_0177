@@ -1,0 +1,142 @@
+.cart-page h2 {
+  margin-top: 0;
+  margin-bottom: 18px;
+  font-size: 28px;
+}
+
+.empty-cart {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  font-size: 18px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.cart-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 22px;
+}
+
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.cart-card {
+  background: white;
+  border-radius: 14px;
+  padding: 18px;
+  display: flex;
+  gap: 18px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.cart-card img {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+  background: #f8fafc;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.item-info {
+  flex: 1;
+}
+
+.item-info h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.price {
+  color: #15803d;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.qty-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 12px 0;
+}
+
+.qty-row button {
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 8px;
+  background: #e5e7eb;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.subtotal {
+  font-weight: 600;
+}
+
+.remove-btn {
+  margin-top: 8px;
+  background: #dc2626;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+.summary-card {
+  background: white;
+  border-radius: 14px;
+  padding: 20px;
+  height: fit-content;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.summary-card h3 {
+  margin-top: 0;
+}
+
+.total {
+  font-size: 22px;
+  font-weight: bold;
+  color: #111827;
+  margin: 14px 0 18px;
+}
+
+.checkout-btn,
+.clear-btn {
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.checkout-btn {
+  background: #ffd814;
+}
+
+.clear-btn {
+  background: #e5e7eb;
+}
+
+@media (max-width: 900px) {
+  .cart-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .cart-card {
+    flex-direction: column;
+  }
+
+  .cart-card img {
+    width: 100%;
+    height: 220px;
+  }
+}

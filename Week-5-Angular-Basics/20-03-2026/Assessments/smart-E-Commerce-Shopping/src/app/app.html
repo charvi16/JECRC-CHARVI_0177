@@ -1,0 +1,50 @@
+<div class="navbar">
+  <div class="logo" (click)="goTo('products')">Smart E-Commerce<span>Lite</span></div>
+
+  <div class="search-bar">
+    <input
+      type="text"
+      placeholder="Search "
+      [(value)]="searchText"
+      (input)="searchText = $any($event.target).value"
+    />
+  </div>
+
+  <div class="nav-actions">
+    <button (click)="goTo('products')">Home</button>
+    <button (click)="goTo('cart')">Cart ({{ getCartCount() }})</button>
+    <button (click)="goTo('checkout')">Checkout</button>
+  </div>
+</div>
+
+<div class="page-container">
+  <app-product
+    *ngIf="currentPage === 'products'"
+    [products]="products"
+    [searchText]="searchText"
+    (add)="addToCart($event)"
+    (view)="viewProduct($event)">
+  </app-product>
+
+  <app-product-details
+    *ngIf="currentPage === 'details'"
+    [product]="selectedProduct"
+    (back)="goTo('products')"
+    (add)="addToCart($event)">
+  </app-product-details>
+
+  <app-cart
+    *ngIf="currentPage === 'cart'"
+    [cart]="cart"
+    (remove)="removeItem($event)"
+    (update)="updateQuantity($event.item, $event.change)"
+    (clear)="clearCart()"
+    (checkout)="goTo('checkout')">
+  </app-cart>
+
+  <app-checkout
+    *ngIf="currentPage === 'checkout'"
+    [cart]="cart">
+  </app-checkout>
+</div>
+

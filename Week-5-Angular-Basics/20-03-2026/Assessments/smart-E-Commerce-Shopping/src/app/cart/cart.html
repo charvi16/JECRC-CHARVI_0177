@@ -1,0 +1,39 @@
+<div class="cart-page">
+  <h2>Your Shopping Cart</h2>
+
+  <div *ngIf="cart.length === 0" class="empty-cart">
+    Your cart is empty.
+  </div>
+
+  <div *ngIf="cart.length > 0" class="cart-layout">
+    <div class="cart-items">
+      <div class="cart-card" *ngFor="let item of cart">
+        <img [src]="item.image" [alt]="item.name" />
+
+        <div class="item-info">
+          <h3>{{ item.name }}</h3>
+          <p>{{ item.category }}</p>
+          <p class="price">₹{{ item.price }}</p>
+
+          <div class="qty-row">
+            <button (click)="update.emit({ item: item, change: -1 })">-</button>
+            <span>{{ item.quantity }}</span>
+            <button (click)="update.emit({ item: item, change: 1 })">+</button>
+          </div>
+
+          <p class="subtotal">Subtotal: ₹{{ item.price * item.quantity }}</p>
+          <button class="remove-btn" (click)="remove.emit(item.id)">Remove</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="summary-card">
+      <h3>Order Summary</h3>
+      <p>Total Items: {{ cart.length }}</p>
+      <p class="total">Grand Total: ₹{{ getTotal() }}</p>
+
+      <button class="checkout-btn" (click)="checkout.emit()">Proceed to Checkout</button>
+      <button class="clear-btn" (click)="clear.emit()">Clear Cart</button>
+    </div>
+  </div>
+</div>
