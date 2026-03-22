@@ -1,5 +1,4 @@
-const API = "https://localhost:5025/api"; 
-// if your backend runs on another port, change this
+const API = "http://localhost:5025/api"; 
 
 async function register() {
   const data = {
