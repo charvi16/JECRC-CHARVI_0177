@@ -1,0 +1,19 @@
+<div class="checkout-container">
+
+  <h2>Checkout</h2>
+
+  <input [(ngModel)]="form.name" name="name" placeholder="Full Name">
+  <input [(ngModel)]="form.email" name="email" placeholder="Email">
+  <textarea [(ngModel)]="form.address" name="address" placeholder="Address"></textarea>
+
+  <select [(ngModel)]="form.payment" name="payment">
+    <option>UPI</option>
+    <option>Card</option>
+    <option>Cash on Delivery</option>
+  </select>
+
+  <button class="place-btn" (click)="submit()">
+    Place Order
+  </button>
+
+</div>

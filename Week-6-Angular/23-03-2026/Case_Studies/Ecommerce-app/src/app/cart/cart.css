@@ -1,0 +1,47 @@
+.cart-container {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.cart-item h4 {
+  margin: 0;
+}
+
+.quantity {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.qty-btn {
+  padding: 5px 10px;
+  border: none;
+  background: #2874f0;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.remove-btn {
+  background: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.total {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 15px;
+}
