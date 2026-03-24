@@ -1,0 +1,22 @@
+<div class="container">
+  <h2>🔥 Trending Courses</h2>
+
+  <div class="grid">
+    <div class="card" *ngFor="let course of courses">
+
+      <div class="img">📘</div>
+
+      <h3>{{course.CourseName}}</h3>
+
+      <p class="desc">{{course.Desc}}</p>
+
+      <p class="seats">Seats: {{course.seatsVailable}}</p>
+
+      <button 
+        [routerLink]="['/course', course.CourseId]"
+        class="btn">
+        View Details
+      </button>
+    </div>
+  </div>
+</div>
