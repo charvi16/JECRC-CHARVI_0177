@@ -1,0 +1,29 @@
+<div class="container">
+  <app-task-form (taskAdded)="addTask($event)"></app-task-form>
+
+  <div class="search-box">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      placeholder="Search tasks..."
+    />
+    <button (click)="search()">Search</button>
+  </div>
+
+  <div class="task-card" *ngFor="let task of tasks">
+    <div class="task-left">
+      <input
+        type="checkbox"
+        [checked]="task.completed"
+        (change)="toggleTask(task)"
+      />
+      <span [class.completed]="task.completed">
+        {{ task.title }}
+      </span>
+    </div>
+
+    <button class="delete" (click)="deleteTask(task.id!)">
+      ✕
+    </button>
+  </div>
+</div>
