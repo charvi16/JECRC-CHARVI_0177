@@ -1,0 +1,40 @@
+import React from 'react'
+import { useState } from 'react'
+
+function TodoForm({onAddTodo}) {
+    const [inputVal, setInputVal] = useState('');
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if(inputVal.trim()){
+            onAddTodo(inputVal);
+            setInputVal = '';
+        }
+    }
+  return (
+    <form onSubmit={handleSubmit} style={{margin : '20px 0'}}>
+        <input type='text'
+        value={inputVal}
+        onChange={(e) => setInputVal(e.target.value)}
+        placeholder='Enter a new to do'
+        style={{padding : '10px',
+            width : '300px',
+            marginRight : '10px',
+            border : '1px solid #ccc',
+            borderRadius : '4px'
+        }}
+        />
+
+        <button type="submit" style={{
+            padding : '10px 20px',
+            backgroundColor : '#28a745',
+            color:'white',
+            border : 'none',
+            borderRadius : '4px',
+            cursor : 'pointer'
+        }}>Add Todo</button>
+    </form>
+  )
+}
+
+export default TodoForm
