@@ -1,0 +1,53 @@
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  font-family: Arial;
+}
+
+.controls {
+  margin-bottom: 20px;
+}
+
+button {
+  margin-left: 10px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+th {
+  background-color: #f5f5f5;
+}
+
+.sortable {
+  cursor: pointer;
+  color: blue;
+}
+
+.credit {
+  color: green;
+}
+
+.debit {
+  color: red;
+}
+
+.form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.form input, .form select {
+  padding: 6px;
+}
