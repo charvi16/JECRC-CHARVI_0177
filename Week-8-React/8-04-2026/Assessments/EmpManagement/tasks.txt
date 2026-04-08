@@ -1,0 +1,305 @@
+Task 1: What is Redux and When to Use It
+What is Redux?
+
+Redux is a predictable state container for JavaScript applications. It is commonly used with React to manage application state in a centralized and structured way.
+
+In simple words, Redux helps you store all important shared data of your application in one central place, called the store. Instead of passing data manually from one component to another through props, components can directly read data from the Redux store and send updates through actions.
+
+Redux is very useful in large-scale applications where many components need to access and update the same data. For example, in an Employee Management System:
+
+employee list may be used in multiple screens
+user login status may be needed everywhere
+theme state may affect the whole UI
+loading indicators may be controlled globally
+
+Redux makes such state handling organized, scalable, and easier to debug.
+
+Why Redux is called a predictable state container
+
+Redux follows strict rules:
+
+state is stored in one central store
+state cannot be changed directly
+changes happen only through actions
+reducers decide how state should update
+
+Because of this fixed pattern, state updates become predictable. If you know the current state and the action being dispatched, you can determine the next state.
+
+When should Redux be used?
+
+Redux is useful when:
+
+the application is large
+many components need shared global state
+state logic is becoming hard to manage
+prop drilling is becoming messy
+debugging state updates is difficult
+the app has authentication, dashboards, forms, APIs, filters, loaders, themes, etc.
+
+For this Employee Management Dashboard, Redux is a good choice because the app contains:
+
+employee CRUD operations
+authentication state
+global UI state like theme and loading
+
+All of these are shared states, so centralized management is helpful.
+
+When NOT to use Redux
+
+Redux should not be used in every application.
+
+You may avoid Redux when:
+
+the app is small
+state is simple
+state is local to one or two components
+Context API or useState is enough
+adding Redux makes the project unnecessarily complex
+
+For example, if your app only has a small form, a counter, or a simple to-do list, Redux may be overkill.
+
+Task 2: Store, Actions, Reducers
+
+Redux is built around three important concepts:
+
+Store
+Actions
+Reducers
+
+Let us understand each one in detail.
+
+1. Store
+
+The store is the central place where the entire application state lives.
+
+It is called the single source of truth because all shared state is stored in one object.
+
+For example, in this project, the store may contain:
+
+list of employees
+logged-in user info
+theme mode
+loading status
+
+The store allows components to:
+
+read the current state
+dispatch actions to update the state
+Why store is important
+
+Without a store, data would be scattered in multiple components. Managing it would become confusing. With Redux, the store keeps everything centralized.
+
+Example
+{
+  auth: {
+    isAuthenticated: true,
+    user: { username: "admin" }
+  },
+  employees: {
+    employees: [...]
+  },
+  ui: {
+    theme: "light",
+    loading: false
+  }
+}
+2. Actions
+
+An action is a plain JavaScript object that describes what happened.
+
+It does not change the state directly. It only tells Redux that some event occurred.
+
+An action usually has:
+
+type → tells what kind of action it is
+payload → optional data needed for the update
+Example
+{
+  type: "employees/addEmployee",
+  payload: {
+    id: 1,
+    name: "Rahul",
+    department: "IT"
+  }
+}
+
+Here:
+
+type says an employee should be added
+payload contains employee data
+Why actions are important
+
+Actions make state changes explicit. Instead of silently changing state, Redux says: “Tell me what happened first.”
+
+This makes the application easier to understand and debug.
+
+3. Reducers
+
+A reducer is a function that decides how state should change based on the action received.
+
+It takes two things:
+
+current state
+action
+
+And returns:
+
+new updated state
+Basic reducer syntax
+function reducer(state, action) {
+  switch (action.type) {
+    case "someAction":
+      return updatedState;
+    default:
+      return state;
+  }
+}
+Why reducers are important
+
+Reducers contain the actual logic of state updates. They are responsible for handling actions properly and returning the next state.
+
+For example:
+
+add employee
+edit employee
+delete employee
+login
+logout
+toggle theme
+
+All these can be handled by reducers.
+
+Task 3: Immutable State Principle
+What is immutability?
+
+Immutability means not changing the original state directly. Instead of modifying the existing object or array, we create a new updated copy.
+
+Why state should not be mutated in Redux
+
+Redux depends on immutability because it needs to detect whether state has changed or not.
+
+If you directly mutate state, Redux may not properly detect updates, and the UI may not re-render correctly.
+
+Direct mutation can also cause:
+
+bugs that are hard to track
+unexpected side effects
+difficulty in debugging
+broken time-travel debugging
+unpredictable application behavior
+Wrong way
+state.employees.push(newEmployee);
+
+This directly changes the existing array.
+
+Correct way
+return {
+  ...state,
+  employees: [...state.employees, newEmployee]
+};
+
+This creates a new array.
+
+Why immutability is important in Redux
+
+Immutability helps Redux:
+
+compare old state and new state efficiently
+detect changes quickly
+re-render UI correctly
+keep state predictable
+avoid accidental data corruption
+Redux Toolkit and immutability
+
+Redux Toolkit uses Immer internally, which lets us write code that looks like mutation, but actually creates immutable updates safely behind the scenes.
+
+Example:
+
+state.employees.push(action.payload);
+
+This looks like mutation, but in Redux Toolkit it is handled safely.
+
+Conclusion
+
+Immutability is a core principle of Redux because it ensures reliable updates, predictable state management, and better debugging.
+
+Task 4: Redux Data Flow Cycle
+
+Redux follows a one-way data flow. This means data always moves in one direction, making the application easier to understand.
+
+Redux Data Flow Steps
+1. Component dispatches an action
+
+A React component triggers an event, such as clicking a button.
+
+Example:
+
+user clicks “Add Employee”
+component dispatches addEmployee() action
+2. Action goes to reducer
+
+The dispatched action is sent to the reducer.
+
+3. Reducer updates state
+
+The reducer checks the action type and updates the state accordingly.
+
+4. Store gets updated
+
+Redux saves the new updated state inside the store.
+
+5. UI re-renders
+
+Components subscribed to the store receive the updated state and re-render automatically.
+
+Example Flow
+
+Suppose the user adds a new employee:
+
+component dispatches addEmployee(employeeData)
+reducer receives the action
+reducer adds new employee to the list
+store updates the employees state
+employee list component re-renders with the new employee
+Why one-way flow is useful
+
+It makes the application:
+
+easier to debug
+more predictable
+easier to test
+simpler to maintain in large projects
+
+Task 5: Small Reducer Example
+
+Here is a simple reducer example for employee management:
+
+const initialState = {
+  employees: []
+};
+
+function employeeReducer(state = initialState, action) {
+  switch (action.type) {
+    case "ADD_EMPLOYEE":
+      return {
+        ...state,
+        employees: [...state.employees, action.payload]
+      };
+
+    case "DELETE_EMPLOYEE":
+      return {
+        ...state,
+        employees: state.employees.filter(emp => emp.id !== action.payload)
+      };
+
+    default:
+      return state;
+  }
+}
+Explanation
+initial state contains an empty employee array
+when ADD_EMPLOYEE action is dispatched, new employee is added
+when DELETE_EMPLOYEE action is dispatched, matching employee is removed
+reducer returns a new state object each time
+
+This is the basic idea of how reducers work.
