@@ -1,3 +1,16 @@
+You have the following component hierarchy: 
+text AppComponent (Default strategy) 
+└── DashboardComponent (OnPush strategy) 
+└── StatsComponent (Default strategy) 
+
+DashboardComponent receives @Input() userStats from AppComponent. Inside DashboardComponent, you have: typescript updateLocally() { this.userStats.score = 100; } After clicking a button that calls updateLocally(), the view in DashboardComponent does NOT update, but StatsComponent (child) shows the updated score. 
+
+ Questions: 
+a) (3 marks) Why does DashboardComponent not update its own view? 
+ b) (3 marks) Why does StatsComponent show the updated value? 
+ c) (4 marks) How would you fix DashboardComponent without changing its strategy to Default? 
+
+
 Q1 : Dashboard Component does not update because onPush change only detects changes when there is a change in the reference, not when the properties mutate or the value is changed.
 In our scenario the object refernce stays the same, so onPush change is not triggered, therefore there is no change even though userStats value changed.
 
