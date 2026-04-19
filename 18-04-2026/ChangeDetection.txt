@@ -1,0 +1,7 @@
+Q1 : Dashboard Component does not update because onPush change only detects changes when there is a change in the reference, not when the properties mutate or the value is changed.
+In our scenario the object refernce stays the same, so onPush change is not triggered, therefore there is no change even though userStats value changed.
+
+Q2 : Stats Component shows the updated value becuase it has a Default change detection , what that means is that every change is detected thoroughly ie the value change as well as the refernce change. And Even though the parent(Dashboard Component) did not implement the change, the chils(Stats Component) runs its own thorough change detection cycle and updates the ui accordingly
+
+Q3 : Now if we were to make sure that even if there is a change in value it is detected and implemented by Dashboard Component without canging the strategy
+Change the object refernce ie everytime a value is updated we can create a new object and assign the new value in that and then pass it so tht onPush change can detect it and implement it.
