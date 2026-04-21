@@ -1,0 +1,47 @@
+<div class="container">
+  <h2>Product Inventory</h2>
+
+  <div class="controls">
+    <label for="category">Category:</label>
+    <select id="category" [(ngModel)]="selectedCategory">
+      <option value="">-- Select Category --</option>
+      @for (category of categories; track category) {
+        <option [value]="category">{{ category }}</option>
+      }
+    </select>
+
+    <button (click)="filterProducts()">Filter</button>
+
+    <label class="checkbox-label">
+      <input
+        type="checkbox"
+        [(ngModel)]="inStockOnly"
+        (change)="onStockToggle()"
+      />
+      Show In-Stock Only
+    </label>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th (click)="sortByPrice()" class="sortable">Price ($)</th>
+        <th>Stock</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (product of displayedProducts; track product.id) {
+        <tr>
+          <td>{{ product.id }}</td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.category }}</td>
+          <td>{{ product.price }}</td>
+          <td>{{ product.stock }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
