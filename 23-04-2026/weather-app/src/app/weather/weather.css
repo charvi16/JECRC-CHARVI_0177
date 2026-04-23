@@ -1,0 +1,79 @@
+/* Center everything */
+.container {
+  max-width: 400px;
+  margin: 60px auto;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+/* Title */
+.title {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Input */
+.search-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.search-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+/* Card */
+.card {
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #74ebd5, #9face6);
+  color: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* City */
+.city {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Temperature */
+.temp {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Info */
+.info {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+/* No Results */
+.no-results {
+  margin-top: 20px;
+  color: red;
+  font-weight: bold;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

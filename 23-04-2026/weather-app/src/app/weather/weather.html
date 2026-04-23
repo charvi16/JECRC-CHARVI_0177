@@ -1,0 +1,46 @@
+<div class="container">
+
+  <h2 class="title">🌤 Weather Search</h2>
+
+  <input
+    type="text"
+    [(ngModel)]="searchText"
+    (input)="onSearch()"
+    placeholder="Enter city name..."
+    class="search-input"
+    data-test-id="app-input"
+  />
+
+  <!-- Weather List -->
+  <div *ngIf="filteredList.length > 0">
+    
+    <div 
+      *ngFor="let item of filteredList" 
+      class="card"
+      data-test-id="weather-details"
+    >
+      <div class="city">{{ item.name }}</div>
+
+      <div class="temp" data-test-id="output-temperature">
+        {{ item.temperature }}
+      </div>
+
+      <div class="info" data-test-id="output-wind">
+        🌬 Wind: {{ item.wind }}
+      </div>
+
+      <div class="info" data-test-id="output-humidity">
+        💧 Humidity: {{ item.humidity }}
+      </div>
+    </div>
+
+  </div>
+
+  <!-- No Results -->
+  <div *ngIf="searchText && filteredList.length === 0"
+       class="no-results"
+       data-test-id="no-results">
+    ❌ No Results Found
+  </div>
+
+</div>
