@@ -1,0 +1,19 @@
+@model ems_mvc.Models.Employee
+
+<h2>Add Employee</h2>
+
+<form method="post">
+    <label>Name</label>
+    <input asp-for="Name" />
+    <br />
+
+    <label>Role</label>
+    <input asp-for="Role" />
+    <br />
+
+    <label>Salary</label>
+    <input asp-for="Salary" />
+    <br />
+
+    <button type="submit">Save</button>
+</form>

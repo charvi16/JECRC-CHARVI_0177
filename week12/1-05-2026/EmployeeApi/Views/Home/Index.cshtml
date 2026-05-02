@@ -1,0 +1,61 @@
+<h1 style="color:red;">INDEX VIEW LOADED</h1>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="mb-4">Employee Dashboard</h2>
+
+<button class="btn btn-success mb-3" onclick="loadEmployees()">
+    Get All Employees
+</button>
+
+<div class="card">
+    <div class="card-body">
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Salary</th>
+                    <th>Created Date</th>
+                </tr>
+            </thead>
+            <tbody id="empTable">
+                <!-- Data will come here -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    alert("page loaded");
+async function loadEmployees() {
+    try {
+        alert("JS is working");
+        console.log("n vncndw");
+        const response = await fetch('/employees'); // API call
+        const data = await response.json();
+
+        const tableBody = document.getElementById('empTable');
+        tableBody.innerHTML = '';
+
+        data.forEach(emp => {
+            const row = `
+                <tr>
+                    <td>${emp.id}</td>
+                    <td>${emp.name}</td>
+                    <td>${emp.department}</td>
+                    <td>${emp.salary}</td>
+                    <td>${new Date(emp.createdDate).toLocaleString()}</td>
+                </tr>
+            `;
+            tableBody.innerHTML += row;
+        });
+
+    } catch (error) {
+        console.error('Error loading employees:', error);
+        alert('Failed to load employees');
+    }
+}
+</script>

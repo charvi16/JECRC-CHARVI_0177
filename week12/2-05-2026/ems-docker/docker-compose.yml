@@ -1,0 +1,39 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: ems-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: emsdb
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  api:
+    build:
+      context: ./ems-api 
+      dockerfile: Dockerfile
+    container_name: ems-api
+    depends_on:
+      - mysql
+    environment:
+      - ConnectionStrings__DefaultConnection=server=mysql;port=3306;database=emsdb;user=root;password=root123
+    ports:
+      - "5000:8080"
+
+  mvc:
+    build:
+      context: ./ems-mvc  
+      dockerfile: Dockerfile
+    container_name: ems-mvc
+    depends_on:
+      - api
+    environment:
+      - ApiBaseUrl=http://api:8080
+    ports:
+      - "5001:8080"
+
+volumes:
+  mysql-data:

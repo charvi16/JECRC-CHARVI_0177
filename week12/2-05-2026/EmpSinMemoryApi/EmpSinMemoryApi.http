@@ -1,0 +1,6 @@
+@EmpSinMemoryApi_HostAddress = http://localhost:5063
+
+GET {{EmpSinMemoryApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

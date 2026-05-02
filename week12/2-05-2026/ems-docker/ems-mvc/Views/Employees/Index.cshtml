@@ -1,0 +1,24 @@
+@model List<ems_mvc.Models.Employee>
+
+<h2>Employees</h2>
+
+<a href="/Employees/Create">Add New</a>
+
+<table border="1">
+<tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Role</th>
+    <th>Salary</th>
+</tr>
+
+@foreach (var e in Model)
+{
+<tr>
+    <td>@e.Id</td>
+    <td>@e.Name</td>
+    <td>@e.Role</td>
+    <td>@e.Salary</td>
+</tr>
+}
+</table>
