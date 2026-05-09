@@ -1,0 +1,33 @@
+@model IEnumerable<Order>
+@{
+    ViewData["Title"] = "Order History";
+}
+
+<section class="page-title"><div class="container"><h1>Order History</h1></div></section>
+<section class="container py-4">
+    @if (!Model.Any())
+    {
+        <div class="empty-state"><h2>No orders yet</h2><a class="btn btn-primary" asp-controller="Menu" asp-action="Index">Start Ordering</a></div>
+    }
+    else
+    {
+        <div class="table-responsive panel">
+            <table class="table align-middle">
+                <thead><tr><th>Order</th><th>Date</th><th>Items</th><th>Status</th><th>Total</th><th></th></tr></thead>
+                <tbody>
+                @foreach (var order in Model)
+                {
+                    <tr>
+                        <td>#@order.Id</td>
+                        <td>@order.OrderedAt.ToLocalTime().ToString("dd MMM yyyy, hh:mm tt")</td>
+                        <td>@order.Items.Sum(i => i.Quantity)</td>
+                        <td><span class="badge text-bg-dark">@order.Status</span></td>
+                        <td>Rs. @order.Total</td>
+                        <td><a class="btn btn-outline-dark btn-sm" asp-action="Invoice" asp-route-id="@order.Id">Invoice</a></td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    }
+</section>

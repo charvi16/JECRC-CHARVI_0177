@@ -1,0 +1,37 @@
+trigger:
+  - main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  buildConfiguration: Release
+  imageName: food-ordering-system
+
+steps:
+  - task: UseDotNet@2
+    displayName: Install .NET 8 SDK
+    inputs:
+      packageType: sdk
+      version: 8.0.x
+
+  - script: dotnet restore FoodOrderingSystem.csproj
+    displayName: Restore
+
+  - script: dotnet build FoodOrderingSystem.csproj --configuration $(buildConfiguration) --no-restore
+    displayName: Build
+
+  - script: dotnet publish FoodOrderingSystem.csproj --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/app --no-build
+    displayName: Publish
+
+  - task: Docker@2
+    displayName: Build Docker image
+    inputs:
+      command: build
+      Dockerfile: Dockerfile
+      repository: $(imageName)
+      tags: |
+        $(Build.BuildId)
+
+  - publish: $(Build.ArtifactStagingDirectory)/app
+    artifact: drop

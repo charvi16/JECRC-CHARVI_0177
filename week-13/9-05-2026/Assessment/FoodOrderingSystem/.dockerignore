@@ -1,0 +1,10 @@
+bin/
+obj/
+.git/
+.vs/
+app.db
+foodhub-local.db*
+App_Data/
+local-run.*
+*.user
+*.suo

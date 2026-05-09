@@ -1,0 +1,40 @@
+@model Order
+@{
+    ViewData["Title"] = "Invoice";
+}
+
+<section class="page-title"><div class="container"><h1>Invoice #@Model.Id</h1></div></section>
+<section class="container py-4">
+    <div class="invoice">
+        <div class="d-flex flex-column flex-md-row justify-content-between gap-3">
+            <div>
+                <h2>FoodHub</h2>
+                <p class="mb-0">Ordered @Model.OrderedAt.ToLocalTime().ToString("dd MMM yyyy, hh:mm tt")</p>
+                <span class="badge text-bg-dark">@Model.Status</span>
+            </div>
+            <div>
+                <strong>@Model.CustomerName</strong>
+                <p class="mb-0">@Model.Email</p>
+                <p>@Model.PhoneNumber</p>
+                <p>@Model.DeliveryAddress</p>
+            </div>
+        </div>
+        <div class="table-responsive mt-4">
+            <table class="table">
+                <thead><tr><th>Item</th><th>Qty</th><th>Price</th><th>Total</th></tr></thead>
+                <tbody>
+                @foreach (var item in Model.Items)
+                {
+                    <tr><td>@item.FoodName</td><td>@item.Quantity</td><td>Rs. @item.UnitPrice</td><td>Rs. @item.LineTotal</td></tr>
+                }
+                </tbody>
+            </table>
+        </div>
+        <div class="invoice-total">
+            <span>Subtotal: Rs. @Model.Subtotal</span>
+            <span>Delivery: Rs. @Model.DeliveryFee</span>
+            <span>Tax: Rs. @Model.Tax</span>
+            <strong>Total: Rs. @Model.Total</strong>
+        </div>
+    </div>
+</section>

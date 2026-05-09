@@ -1,0 +1,28 @@
+@{
+    ViewData["Title"] = "Home";
+}
+
+<section class="hero" style="background-image: linear-gradient(90deg, rgba(13, 19, 28, .84), rgba(13, 19, 28, .34)), url('/images/hero-food.png');">
+    <div class="container">
+        <div class="hero-copy">
+            <p class="eyebrow">Fresh kitchens. Fast checkout. Live order tracking.</p>
+            <h1>FoodHub</h1>
+            <p class="lead">Browse restaurant favorites, build a cart, place orders, and manage fulfillment from one ASP.NET Core MVC application.</p>
+            <div class="d-flex flex-wrap gap-3">
+                <a class="btn btn-primary btn-lg" asp-controller="Menu" asp-action="Index">Browse Menu</a>
+                <a class="btn btn-light btn-lg" asp-controller="Cart" asp-action="Index">View Cart</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-band">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-3"><div class="stat"><strong>Identity</strong><span>Register, login, logout, forgot password</span></div></div>
+            <div class="col-md-3"><div class="stat"><strong>Admin</strong><span>Food, categories, uploads, orders</span></div></div>
+            <div class="col-md-3"><div class="stat"><strong>Customer</strong><span>Search, cart, checkout, history</span></div></div>
+            <div class="col-md-3"><div class="stat"><strong>DevOps</strong><span>Docker and Azure DevOps pipeline</span></div></div>
+        </div>
+    </div>
+</section>

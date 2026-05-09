@@ -1,0 +1,45 @@
+@model CartViewModel
+@{
+    ViewData["Title"] = "Cart";
+}
+
+<section class="page-title"><div class="container"><h1>Your Cart</h1></div></section>
+<section class="container py-4">
+    @if (!Model.Items.Any())
+    {
+        <div class="empty-state">
+            <h2>Your cart is empty</h2>
+            <a class="btn btn-primary" asp-controller="Menu" asp-action="Index">Browse Menu</a>
+        </div>
+    }
+    else
+    {
+        <div class="row g-4">
+            <div class="col-lg-8">
+                @foreach (var item in Model.Items)
+                {
+                    <div class="cart-row">
+                        <img src="@(item.ImageUrl ?? "/images/hero-food.png")" alt="@item.Name" />
+                        <div class="flex-grow-1">
+                            <h2>@item.Name</h2>
+                            <span>Rs. @item.UnitPrice each</span>
+                        </div>
+                        <form asp-action="Update" method="post" class="qty-form">
+                            <input type="hidden" name="id" value="@item.FoodItemId" />
+                            <input class="form-control" type="number" name="quantity" min="0" max="99" value="@item.Quantity" />
+                            <button class="btn btn-outline-dark" type="submit">Update</button>
+                        </form>
+                        <form asp-action="Remove" method="post">
+                            <input type="hidden" name="id" value="@item.FoodItemId" />
+                            <button class="btn btn-link text-danger" type="submit">Remove</button>
+                        </form>
+                    </div>
+                }
+            </div>
+            <div class="col-lg-4">
+                <partial name="_OrderSummary" model="Model" />
+                <a class="btn btn-primary w-100 mt-3" asp-action="Checkout">Checkout</a>
+            </div>
+        </div>
+    }
+</section>

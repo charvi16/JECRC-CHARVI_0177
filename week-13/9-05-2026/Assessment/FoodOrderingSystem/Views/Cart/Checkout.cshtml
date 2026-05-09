@@ -1,0 +1,25 @@
+@model CheckoutViewModel
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<section class="page-title"><div class="container"><h1>Checkout</h1></div></section>
+<section class="container py-4">
+    <div class="row g-4">
+        <div class="col-lg-7">
+            <form method="post" class="panel">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="row g-3">
+                    <div class="col-md-6"><label asp-for="CustomerName" class="form-label"></label><input asp-for="CustomerName" class="form-control" /><span asp-validation-for="CustomerName" class="text-danger"></span></div>
+                    <div class="col-md-6"><label asp-for="Email" class="form-label"></label><input asp-for="Email" class="form-control" /><span asp-validation-for="Email" class="text-danger"></span></div>
+                    <div class="col-md-6"><label asp-for="PhoneNumber" class="form-label"></label><input asp-for="PhoneNumber" class="form-control" /><span asp-validation-for="PhoneNumber" class="text-danger"></span></div>
+                    <div class="col-12"><label asp-for="DeliveryAddress" class="form-label"></label><textarea asp-for="DeliveryAddress" class="form-control" rows="3"></textarea><span asp-validation-for="DeliveryAddress" class="text-danger"></span></div>
+                    <div class="col-12"><label asp-for="Notes" class="form-label"></label><textarea asp-for="Notes" class="form-control" rows="2"></textarea></div>
+                </div>
+                <button class="btn btn-primary mt-4" type="submit">Place Order</button>
+            </form>
+        </div>
+        <div class="col-lg-5"><partial name="_OrderSummary" model="Model" /></div>
+    </div>
+</section>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

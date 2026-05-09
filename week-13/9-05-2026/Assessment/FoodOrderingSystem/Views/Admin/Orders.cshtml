@@ -1,0 +1,37 @@
+@model IEnumerable<Order>
+@{
+    ViewData["Title"] = "Manage Orders";
+}
+
+<section class="page-title"><div class="container"><h1>Manage Orders</h1></div></section>
+<section class="container py-4">
+    <div class="table-responsive panel">
+        <table class="table align-middle">
+            <thead><tr><th>Order</th><th>Customer</th><th>Items</th><th>Status</th><th>Total</th><th>Update</th></tr></thead>
+            <tbody>
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <td><a asp-controller="Orders" asp-action="Invoice" asp-route-id="@order.Id">#@order.Id</a></td>
+                    <td>@order.CustomerName<br /><span class="text-muted">@order.PhoneNumber</span></td>
+                    <td>@order.Items.Sum(i => i.Quantity)</td>
+                    <td><span class="badge text-bg-dark">@order.Status</span></td>
+                    <td>Rs. @order.Total</td>
+                    <td>
+                        <form asp-action="UpdateStatus" method="post" class="d-flex gap-2">
+                            <input type="hidden" name="id" value="@order.Id" />
+                            <select name="status" class="form-select form-select-sm">
+                                @foreach (OrderStatus status in Enum.GetValues<OrderStatus>())
+                                {
+                                    <option value="@status" selected="@(order.Status == status ? "selected" : null)">@status</option>
+                                }
+                            </select>
+                            <button class="btn btn-outline-dark btn-sm">Save</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</section>

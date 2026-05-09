@@ -1,0 +1,57 @@
+@model IEnumerable<FoodItem>
+@{
+    ViewData["Title"] = "Menu";
+    var categories = ViewBag.Categories as List<Category> ?? new();
+    int? selectedCategoryId = ViewBag.CategoryId as int?;
+}
+
+<section class="page-title">
+    <div class="container">
+        <h1>Menu</h1>
+        <form class="row g-2 mt-3" method="get">
+            <div class="col-md-6"><input class="form-control" name="search" value="@ViewBag.Search" placeholder="Search food, ingredients, category" /></div>
+            <div class="col-md-4">
+                <select class="form-select" name="categoryId">
+                    <option value="">All categories</option>
+                    @foreach (var category in categories)
+                    {
+                        <option value="@category.Id" selected="@(selectedCategoryId == category.Id ? "selected" : null)">@category.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-2 d-grid"><button class="btn btn-dark" type="submit">Search</button></div>
+        </form>
+    </div>
+</section>
+
+<section class="container py-4">
+    @if (TempData["Message"] is not null)
+    {
+        <div class="alert alert-success">@TempData["Message"]</div>
+    }
+    <div class="row g-4">
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-6 col-lg-4">
+                <article class="food-card">
+                    <img src="@(item.ImageUrl ?? "/images/hero-food.png")" alt="@item.Name" />
+                    <div class="food-card-body">
+                        <div class="d-flex justify-content-between gap-3">
+                            <h2>@item.Name</h2>
+                            <strong>Rs. @item.Price</strong>
+                        </div>
+                        <p>@item.Description</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="badge text-bg-light">@item.Category?.Name</span>
+                            <span class="small text-muted">@item.PreparationMinutes min</span>
+                        </div>
+                        <form asp-action="AddToCart" method="post" class="mt-3">
+                            <input type="hidden" name="id" value="@item.Id" />
+                            <button class="btn btn-primary w-100" type="submit">Add to Cart</button>
+                        </form>
+                    </div>
+                </article>
+            </div>
+        }
+    </div>
+</section>

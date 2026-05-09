@@ -1,0 +1,17 @@
+@model CartViewModel
+
+<aside class="summary">
+    <h2>Order Summary</h2>
+    @foreach (var item in Model.Items)
+    {
+        <div class="d-flex justify-content-between py-2">
+            <span>@item.Name x @item.Quantity</span>
+            <strong>Rs. @item.LineTotal</strong>
+        </div>
+    }
+    <hr />
+    <div class="d-flex justify-content-between"><span>Subtotal</span><strong>Rs. @Model.Subtotal</strong></div>
+    <div class="d-flex justify-content-between"><span>Delivery</span><strong>Rs. @Model.DeliveryFee</strong></div>
+    <div class="d-flex justify-content-between"><span>Tax</span><strong>Rs. @Model.Tax</strong></div>
+    <div class="d-flex justify-content-between total"><span>Total</span><strong>Rs. @Model.Total</strong></div>
+</aside>
