@@ -1,0 +1,24 @@
+services:
+  api:
+    build: .
+    ports:
+      - "5015:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      Jwt__Secret: replace-with-local-development-secret
+      ConnectionStrings__SqlServer: Server=sqlserver,1433;Database=SmartHospital;User Id=sa;Password=Your_password123;TrustServerCertificate=True;
+    depends_on:
+      - sqlserver
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: Your_password123
+    ports:
+      - "1433:1433"
+    volumes:
+      - sql_data:/var/opt/mssql
+
+volumes:
+  sql_data:
